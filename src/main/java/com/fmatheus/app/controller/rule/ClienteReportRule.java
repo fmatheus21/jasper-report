@@ -5,6 +5,7 @@ import com.fmatheus.app.controller.dto.report.client.ReportDetails;
 import com.fmatheus.app.controller.dto.report.client.ReportSimple;
 import com.fmatheus.app.controller.dto.response.ClienteDtoResponse;
 import com.fmatheus.app.controller.enumerable.ReportTypeEnum;
+import com.fmatheus.app.controller.exception.JasperException;
 import com.fmatheus.app.controller.util.AppUtil;
 import com.fmatheus.app.model.service.ClientService;
 import net.sf.jasperreports.engine.JRException;
@@ -32,16 +33,12 @@ public class ClienteReportRule {
         this.printOut(response, type);
     }
 
-    public ClienteDtoResponse findById(int id) {
-        return this.clientServicevice.findById(id).orElseThrow(this.messageResponseRule::errorNotFound);
-    }
-
 
     public void printOut(HttpServletResponse response, ReportTypeEnum type) {
         try {
             this.reportRule.createPdf(response, this.converterReportList(), type);
         } catch (JRException | IOException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new JasperException(e.getMessage());
         }
     }
 
