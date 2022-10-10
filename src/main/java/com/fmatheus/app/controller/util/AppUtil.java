@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import br.com.caelum.stella.format.CNPJFormatter;
 import br.com.caelum.stella.format.CPFFormatter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.Base64;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.io.FileUtils;
 
 
@@ -105,11 +107,11 @@ public class AppUtil {
 
 
     public static String converterImagetoBase64(File file) {
-        return Objects.requireNonNull(converterImageToBase64(file.getAbsolutePath())).replace("data:image/png;base64,", "");
+        return Objects.requireNonNull(converterToBase64(file.getAbsolutePath())).replace("data:image/png;base64,", "");
     }
 
     @SneakyThrows
-    private static String converterImageToBase64(String path) {
+    private static String converterToBase64(String path) {
         logger.info("Procurando pela imagem {}", path);
         File file = new File(path);
         if (file.exists()) {
