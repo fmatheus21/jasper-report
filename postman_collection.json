@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8083/jasperreport/api/v1/report/clients?type=CLIENT_SIMPLE",
+					"raw": "http://localhost:8083/jasperreport/api/v1/report/clients?type=CLIENT_DETAILS",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -28,12 +28,8 @@
 					"query": [
 						{
 							"key": "type",
-							"value": "CLIENT_SIMPLE"
-						},
-						{
-							"key": "type",
 							"value": "CLIENT_DETAILS",
-							"disabled": true
+							"description": "CLIENT_SIMPLE; CLIENT_DETAILS"
 						}
 					]
 				}
