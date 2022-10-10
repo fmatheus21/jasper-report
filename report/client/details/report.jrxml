@@ -16,6 +16,7 @@
 	<parameter name="pathReport" class="java.lang.String"/>
 	<parameter name="pathTitle" class="java.lang.String"/>
 	<parameter name="listTitle" class="java.util.Collection"/>
+	<parameter name="pathSubReport" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -124,7 +125,9 @@
 		<band height="35" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174"/>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="35" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
 				<textField textAdjust="StretchHeight">
 					<reportElement style="Detail" x="460" y="0" width="120" height="15" uuid="22403d1e-3a2c-439b-9a45-5a1d3a37f303">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1a5f5337-4153-4422-9083-db491fdfe2b0"/>
@@ -152,10 +155,12 @@
 					<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 				</textField>
 				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" x="1" y="0" width="339" height="15" uuid="4813b4b7-38f0-40eb-86ba-3f2b988aa8b0">
+					<reportElement style="Detail" x="0" y="0" width="340" height="15" uuid="4813b4b7-38f0-40eb-86ba-3f2b988aa8b0">
 						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9c753f2-3199-46bd-a592-9b70e38c2527"/>
 						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
 						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<textElement textAlignment="Left">
 						<font fontName="Poppins" size="10"/>
@@ -187,8 +192,8 @@
 				<subreportParameter name="pathTitle">
 					<subreportParameterExpression><![CDATA[$P{pathTitle}]]></subreportParameterExpression>
 				</subreportParameter>
-				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{listTitle})]]></dataSourceExpression>
-				<subreportExpression><![CDATA[$P{pathTitle}]]></subreportExpression>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{addresses})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{pathSubReport}]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>

@@ -43,7 +43,7 @@ public class ReportRule {
     }
 
     /**
-     * Retorna o caminhos do relatorio.
+     * Retorna o caminho do relatorio.
      *
      * @param type Tipo de relatorio
      * @return String
@@ -61,14 +61,32 @@ public class ReportRule {
         return null;
     }
 
+    /**
+     * Cria o relatorio em pdf.
+     *
+     * @param response HttpServletResponse
+     * @param reports  Colecao com os dados do relatorio
+     * @param type     Tipo do relatorio
+     * @throws JRException Excecao lancada pelo Jasper
+     * @throws IOException Excecao lancada pelo OutputStream
+     * @author Fernando Matheus
+     */
     public void createPdf(HttpServletResponse response, Collection<ReportSimple> reports, ReportTypeEnum type) throws JRException, IOException {
         this.initPath(type);
         JRDataSource datasource = new JRBeanCollectionDataSource(reports);
         this.jasperPrint(type, response, datasource);
     }
 
-    @SneakyThrows
-    private void jasperPrint(ReportTypeEnum type, HttpServletResponse response, JRDataSource datasource) {
+
+    /**
+     * Converte o relatorio compilado em pdf.
+     *
+     * @param type       Tipo do relatorio
+     * @param response   HttpServletResponse
+     * @param datasource JRDataSource contendo os dados do relatorio
+     * @author Fernando Matheus
+     */
+    private void jasperPrint(ReportTypeEnum type, HttpServletResponse response, JRDataSource datasource) throws JRException, IOException {
 
         var reportJasper = pathReport.concat("/") + type.getReportName().concat(JASPER);
 
@@ -124,6 +142,14 @@ public class ReportRule {
 
     }
 
+
+    /**
+     * Parametros que serao enviados ao relatorio
+     *
+     * @param type Tio de relatorio
+     * @return Map
+     * @author Fernando Matheus
+     */
     @SneakyThrows
     private Map<String, Object> parametersReport(ReportTypeEnum type) {
 
@@ -134,12 +160,20 @@ public class ReportRule {
                 .build();
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("pathReport", pathReport);
         parameters.put("pathTitle", pathTitle.concat("/title").concat(JASPER));
-        parameters.put("listTitle", Collections.singletonList(title));
+        parameters.put("listTitle", Collections.singletonList(title)); // Parametro em forma de collection
+        parameters.put("pathReport", pathReport);
+        parameters.put("pathSubReport", pathSubReport.concat("/") + type.getSubreportName().concat(JASPER));
         return parameters;
     }
 
+    /**
+     * Converte uma imagem embase64.
+     *
+     * @param logo Diretorio da imagem
+     * @return String
+     * @author Fernando Matheus
+     */
     @SneakyThrows
     private String logo(String logo) {
         File file = ResourceUtils.getFile(logo);

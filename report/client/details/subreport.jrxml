@@ -25,23 +25,22 @@
 	<field name="zipCode" class="java.lang.String"/>
 	<detail>
 		<band height="15" splitType="Stretch">
-			<frame>
-				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174"/>
-				<textField textAdjust="StretchHeight">
-					<reportElement style="Detail" x="0" y="0" width="802" height="15" uuid="4813b4b7-38f0-40eb-86ba-3f2b988aa8b0">
-						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9c753f2-3199-46bd-a592-9b70e38c2527"/>
-						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
-						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
-						<property name="com.jaspersoft.studio.unit.x" value="px"/>
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
-					<textElement textAlignment="Left">
-						<font fontName="Poppins" size="10"/>
-						<paragraph leftIndent="5" rightIndent="5"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{place} + ", " + $F{number} + ", " + $F{district} + ", " + $F{city} + "/" + $F{state} + ", " + $F{zipCode}]]></textFieldExpression>
-				</textField>
-			</frame>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="StretchHeight">
+				<reportElement style="Detail" x="0" y="0" width="802" height="15" uuid="06d5b0fb-8c4b-4346-a9fb-55defbea3192">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d9c753f2-3199-46bd-a592-9b70e38c2527"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Poppins" size="10"/>
+					<paragraph leftIndent="30" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Endereço:</b> " + $F{place} + ", " + $F{number} + ", " + $F{district} + ", " + $F{city} + "/" + $F{state} + ", " + $F{zipCode}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

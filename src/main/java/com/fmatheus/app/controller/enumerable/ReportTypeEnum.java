@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public enum ReportTypeEnum {
 
-    CLIENT_SIMPLE("Client", "Clientes Simplificado", "report", null),
+    CLIENT_SIMPLE("Client", "Clientes Simplificado", "report", "none"),
     CLIENT_DETAILS("Client Details", "Clientes Detalhado", "report", "subreport");
 
 
