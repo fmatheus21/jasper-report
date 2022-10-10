@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "21fbadee-03b2-4464-a09d-36ef86137350",
+		"name": "JasperReport",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7310810"
+	},
+	"item": [
+		{
+			"name": "Relatorio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/jasperreport/api/v1/report/clients?type=CLIENT_SIMPLE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"jasperreport",
+						"api",
+						"v1",
+						"report",
+						"clients"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "CLIENT_SIMPLE"
+						},
+						{
+							"key": "type",
+							"value": "CLIENT_DETAILS",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
